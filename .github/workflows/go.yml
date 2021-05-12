@@ -20,6 +20,15 @@ jobs:
     - name: Build
       run: go build -v ./...
 
+    - name: Install Wix
+      uses: actions/checkout@v2
+      with:
+        repository: fbarresi/wix
+        path: wix
+
+    - name: Download go-msi
+      run: go get github.com/mh-cbon/go-msi
+
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@latest
       with:
