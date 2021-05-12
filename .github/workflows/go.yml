@@ -42,6 +42,11 @@ jobs:
     - name: Build MSI Package
       run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
 
+    - name: Build Setup
+      run: |
+        wix\tools\candle.exe .\build-templates\LicenseAgreementDlg_HK.wxs .\build-templates\WixUI_HK.wxs .\build-templates\product.wxs
+        wix\tools\light.exe -ext WixUIExtension -ext WixUtilExtension -sacl -spdb -out svccheck.msi LicenseAgreementDlg_HK.wixobj WixUI_HK.wixobj product.wixobj
+
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@latest
       with:
