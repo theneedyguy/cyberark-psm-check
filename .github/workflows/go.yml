@@ -33,9 +33,9 @@ jobs:
       run: | 
         mkdir $GOROOT/templates
         pwd
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/LicenseAgreementDlg_HK.wxs -o $GOROOT/templates
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o $GOROOT/WixUI_HK.wxs
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o $GOROOT/product.wxs
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/LicenseAgreementDlg_HK.wxs -o "${{ env.GOROOT }}/templates"
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o "${{ env.GOROOT }}/WixUI_HK.wxs"
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o "${{ env.GOROOT }}/product.wxs"
 
     - name: Make WIX Templates
       run: go-msi generate-templates --out build-templates --version 1.0.2
