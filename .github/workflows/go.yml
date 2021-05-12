@@ -29,9 +29,11 @@ jobs:
     - name: Download go-msi
       run: go get github.com/mh-cbon/go-msi
 
+    - name: Make WIX Templates
+      run: go-msi generate-templates --out templates --version 1.0.2
 
-    - name: Make MSI package
-      run: go-msi make --msi svccheck.msi --version 1.0.1
+    - name: Build MSI Package
+      run: go-msi make --msi svccheck.msi --src templates --version 1.0.2
 
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@latest
