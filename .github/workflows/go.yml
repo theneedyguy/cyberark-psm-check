@@ -31,20 +31,20 @@ jobs:
 
     - name: Create template dir and download templates
       run: | 
-        mkdir "${{ env.GOROOT }}\templates"
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/LicenseAgreementDlg_HK.wxs -o "${{ env.GOROOT }}\templates\LicenseAgreementDlg_HK.wxs"
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o "${{ env.GOROOT }}\templates\WixUI_HK.wxs"
-        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o "${{ env.GOROOT }}\templates\product.wxs"
+        mkdir "templates"
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/LicenseAgreementDlg_HK.wxs -o ".\templates\LicenseAgreementDlg_HK.wxs"
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o ".\templates\WixUI_HK.wxs"
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o ".\templates\product.wxs"
 
     - name: Make WIX Templates
-      run: go-msi generate-templates --src "${{ env.GOROOT }}\templates" --out build-templates --version 1.0.2
+      run: go-msi generate-templates --src ".\templates" --out . --version 1.0.2
 
     # - name: Build MSI Package
     #   run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
 
     - name: Build Setup
       run: |
-        wix\tools\candle.exe .\build-templates\LicenseAgreementDlg_HK.wxs .\build-templates\WixUI_HK.wxs .\build-templates\product.wxs
+        wix\tools\candle.exe LicenseAgreementDlg_HK.wxs WixUI_HK.wxs product.wxs
         wix\tools\light.exe -ext WixUIExtension -ext WixUtilExtension -sacl -spdb -out svccheck.msi LicenseAgreementDlg_HK.wixobj WixUI_HK.wixobj product.wixobj
 
     - name: Automatic Releases
