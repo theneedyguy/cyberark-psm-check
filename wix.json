@@ -1,0 +1,33 @@
+{
+  "product": "CyberArk PSM Service Check",
+  "company": "Kevin Christen",
+  "license": "LICENSE",
+  "upgrade-code": "5644663a-7773-4dd0-bd96-d591166c660d",
+  "files": {
+    "guid": "9cc878b7-0a38-4abe-9b6a-c1b38de1ad9e",
+    "items": [
+      "svccheck.exe"
+    ]
+  },
+  "directories": [],
+  "env": {
+    "guid": "a9f1ab04-26a5-45f1-ab49-e7fe3446e165",
+    "vars": []
+  },
+  "shortcuts": {},
+  "choco": {},
+  "hooks": [
+    {
+      "command": "sc.exe create PSMSVCCheck binPath=\"[INSTALLDIR]svccheck.exe\" type=share start=auto DisplayName=\"CyberArk PSM Service Check\"",
+      "when": "install"
+    },
+    {
+      "command": "sc.exe start PSMSVCCheck",
+      "when": "install"
+    },
+    {
+      "command": "sc.exe delete PSMSVCCheck",
+      "when": "uninstall"
+    }
+  ]
+}
