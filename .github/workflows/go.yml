@@ -26,7 +26,7 @@ jobs:
         # GitHub secret token
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         # Git tag (for automatic releases)
-        # automatic_release_tag: # optional
+        automatic_release_tag: ${{ env.GITHUB_SHA }} # optiona l
         # Should this release be marked as a draft?
         # draft: # optional
         # Should this release be marked as a pre-release?
