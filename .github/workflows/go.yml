@@ -47,6 +47,13 @@ jobs:
         wix\tools\candle.exe LicenseAgreementDlg_HK.wxs WixUI_HK.wxs product.wxs
         wix\tools\light.exe -ext WixUIExtension -ext WixUtilExtension -sacl -spdb -out svccheck.msi LicenseAgreementDlg_HK.wixobj WixUI_HK.wixobj product.wixobj
 
+    - uses: actions/upload-artifact@v2
+      with:
+        name: "build-${{ env.GITHUB_WORKFLOW }}"
+        path: |
+          *.exe
+          *.wxs
+
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@latest
       with:
