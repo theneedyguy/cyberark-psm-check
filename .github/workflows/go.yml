@@ -29,14 +29,19 @@ jobs:
     - name: Download go-msi
       run: go get github.com/mh-cbon/go-msi
 
-    - name: Create template dir
-      run: mkdir $GOROOT/templates
+    - name: Create template dir and download templates
+      run: | 
+        mkdir $GOROOT/templates
+        pwd
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/LicenseAgreementDlg_HK.wxs -o $GOROOT/templates
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o $GOROOT/WixUI_HK.wxs
+        curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o $GOROOT/product.wxs
 
     - name: Make WIX Templates
-      run: go-msi generate-templates --out templates --version 1.0.2
+      run: go-msi generate-templates --out build-templates --version 1.0.2
 
     - name: Build MSI Package
-      run: go-msi make --msi svccheck.msi --src templates --version 1.0.2
+      run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
 
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@latest
