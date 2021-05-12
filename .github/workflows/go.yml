@@ -26,11 +26,11 @@ jobs:
         repository: fbarresi/wix
         path: wix
 
-    - name: Create templates dir
-      run: mkdir $GOROOT/templates
+    - name: Download go-msi
+      run: go get github.com/mh-cbon/go-msi
 
-    - name: Run a one-line script
-      run: # What to write here? Simple "mkdir <name>" doesn't work.
+    - name: Create template dir
+      run: mkdir $GOROOT/templates
 
     - name: Make WIX Templates
       run: go-msi generate-templates --out templates --version 1.0.2
