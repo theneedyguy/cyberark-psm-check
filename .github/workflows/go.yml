@@ -39,8 +39,8 @@ jobs:
     - name: Make WIX Templates
       run: go-msi generate-templates --src "${{ env.GOROOT }}\templates" --out build-templates --version 1.0.2
 
-    - name: Build MSI Package
-      run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
+    # - name: Build MSI Package
+    #   run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
 
     - name: Build Setup
       run: |
