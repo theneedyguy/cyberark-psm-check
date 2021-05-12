@@ -49,7 +49,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: "build-$GITHUB_WORKFLOW"
+        name: "build-${{ env.GITHUB_RUN_NUMBER }}"
         path: |
           *.exe
           *.wxs
