@@ -49,7 +49,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: "build-${{ env.GITHUB_RUN_NUMBER }}"
+        name: "build-${{ github.run_number }}"
         path: |
           *.exe
           *.wxs
