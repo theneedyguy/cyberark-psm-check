@@ -18,4 +18,20 @@ jobs:
         go-version: 1.16
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./... -o svccheck.exe
+
+    - name: Automatic Releases
+      uses: marvinpinto/action-automatic-releases@v1.2.0
+      with:
+        # GitHub secret token
+        repo_token: ${{ env.GITHUB_TOKEN }}
+        # Git tag (for automatic releases)
+        # automatic_release_tag: # optional
+        # Should this release be marked as a draft?
+        # draft: # optional
+        # Should this release be marked as a pre-release?
+        # prerelease: # optional, default is true
+        # Release title (for automatic releases)
+        title: Release
+        # Assets to upload to the release
+        files: svccheck.exe
