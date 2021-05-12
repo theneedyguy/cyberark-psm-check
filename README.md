@@ -10,4 +10,4 @@ This is a single executable and does not require IIS unlike Cyberark's implement
 
 *(Optional) Have a look at the source code or even build the executable yourself using Golang on a Windows host instead of downloading the installer.*
 
-Download the svccheck.msi and install it on the PSM servers. You can check if it works by navigating to http://localhost on the PSM server. 
+Download the svccheck.msi from the [releases page](https://github.com/theneedyguy/cyberark-psm-check/releases) and install it on the PSM servers. You can check if it works by navigating to http://localhost on the PSM server. 
