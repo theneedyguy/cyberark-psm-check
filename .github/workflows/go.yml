@@ -37,7 +37,7 @@ jobs:
         curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o "${{ env.GOROOT }}\templates\product.wxs"
 
     - name: Make WIX Templates
-      run: go-msi generate-templates --out build-templates --version 1.0.2
+      run: go-msi generate-templates --src "${{ env.GOROOT }}\templates" --out build-templates --version 1.0.2
 
     - name: Build MSI Package
       run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
