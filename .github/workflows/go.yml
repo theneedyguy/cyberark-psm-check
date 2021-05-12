@@ -18,7 +18,7 @@ jobs:
         go-version: 1.16
 
     - name: Build
-      run: go build -v ./... -o svccheck.exe
+      run: go build -v ./...
 
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@v1.2.0
