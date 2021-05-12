@@ -36,11 +36,11 @@ jobs:
         curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/WixUI_HK.wxs -o ".\templates\WixUI_HK.wxs"
         curl https://raw.githubusercontent.com/mh-cbon/go-msi/master/templates/product.wxs -o ".\templates\product.wxs"
 
+    - name: Generate RTF format license
+      run: go-msi to-rtf --src LICENSE --out LICENSE.rtf --reencode
+
     - name: Make WIX Templates
       run: go-msi generate-templates --src ".\templates" --out . --version 1.0.2
-
-    # - name: Build MSI Package
-    #   run: go-msi make --msi svccheck.msi --src build-templates --version 1.0.2
 
     - name: Build Setup
       run: |
