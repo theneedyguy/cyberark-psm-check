@@ -18,7 +18,7 @@
   "choco": {},
   "hooks": [
     {
-      "command": "sc.exe create PSMSVCCheck binPath=\"[INSTALLDIR]svccheck.exe\" type=share start=auto DisplayName=\"CyberArk PSM Service Check\"",
+      "command": "sc.exe create PSMSVCCheck binPath=\"[INSTALLDIR]cyberark-psm-check.exe\" type=share start=auto DisplayName=\"CyberArk PSM Service Check\"",
       "when": "install"
     },
     {
