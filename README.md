@@ -2,7 +2,7 @@
 
 This simple service checks the status of the Cyberark PSM service and exposes an HTTP endpoint where it reports the state of the PSM service. It serves as a healthcheck endpoint for load balancers.
 
-If the PSM service is running the PSM server will return **PASS** on port 80 if the PSM service is down it will return **FAIL**.
+If the PSM service is running the PSM server will return **PASS** on port 80 with HTTP status code 200. If the PSM service is down it will return **FAIL** with HTTP status code 404.
 
 This is a single executable and does not require IIS unlike Cyberark's implementation which does use IIS to do essentially the same. Another advantage is that the executable is installed in a few seconds and uses a tiny amount of resources to run.
 

@@ -45,13 +45,13 @@ func reportState(w http.ResponseWriter, r *http.Request) {
 	manager, err := mgr.Connect()
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("FAIL"))
 	}
 	serviceInstance, err := manager.OpenService(windowsService)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("FAIL"))
 	} else {
 		serviceState, _ := serviceInstance.Query()
@@ -60,7 +60,7 @@ func reportState(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			w.Write([]byte("PASS"))
 		default:
-			w.WriteHeader(http.StatusInternalServerError)
+			w.WriteHeader(http.StatusNotFound)
 			w.Write([]byte("FAIL"))
 		}
 	}
