@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -46,19 +45,23 @@ func reportState(w http.ResponseWriter, r *http.Request) {
 	manager, err := mgr.Connect()
 	if err != nil {
 		log.Println(err)
-		fmt.Fprintf(w, "FAIL")
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("FAIL"))
 	}
 	serviceInstance, err := manager.OpenService(windowsService)
 	if err != nil {
 		log.Println(err)
-		fmt.Fprintf(w, "FAIL")
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("FAIL"))
 	} else {
 		serviceState, _ := serviceInstance.Query()
 		switch serviceState.State {
 		case windows.SERVICE_RUNNING:
-			fmt.Fprintf(w, "PASS")
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte("PASS"))
 		default:
-			fmt.Fprintf(w, "FAIL")
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("FAIL"))
 		}
 	}
 }
